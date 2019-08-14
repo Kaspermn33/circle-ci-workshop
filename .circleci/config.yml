@@ -12,15 +12,15 @@ jobs:
       - store_test_results:
           path: build/test-results
       - persist_to_workspace:
-        root: .
-        paths:
-          - .  
+          root: .
+          paths:
+            - .  
 
    build:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
-      - atta ch_workspace:
+      - attach_workspace:
           at: .
       - checkout
       - run:
