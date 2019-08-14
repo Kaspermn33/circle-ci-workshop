@@ -48,6 +48,6 @@ workflows:
     jobs:
       - test
       - build
-      - dockerize:
-        requires:
-          - build
+     # - dockerize:
+      #  requires:
+       #   - build
