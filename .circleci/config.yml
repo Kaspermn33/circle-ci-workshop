@@ -11,26 +11,24 @@ jobs:
             gradle test
       - store_test_results:
           path: build/test-results
+      - persist_to_workspace:
+        root: .
+        paths:
+          - .  
+
    build:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
+      - atta ch_workspace:
+          at: .
       - checkout
       - run:
           name: Assemple Step
-          command:
-            gradle jar
+          command: gradle jar
       - store_artifacts:
           path: build/libs
-          destination: prefix
-      - persist_to_workspace:
-        root: test
-        paths:
-          - .    
-   downstream:
-      steps:
-        - attach_workspace:
-            at: /tmp/workspace
+          destination: prefix  
       
 workflows:
   version: 2
@@ -38,6 +36,3 @@ workflows:
     jobs:
       - test
       - build
-      - downstream:
-        requires:
-          - build
