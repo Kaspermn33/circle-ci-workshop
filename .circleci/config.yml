@@ -39,9 +39,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run docker build -t $DOCKER_USER/circleapp:$CIRCLE_SHA1 .
-      - run docker push $DOCKER_USER/circleapp:$CIRCLE_SHA1         
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t $DOCKER_USER/circleapp:$CIRCLE_SHA1 .
+      - run: docker push $DOCKER_USER/circleapp:$CIRCLE_SHA1         
       
 workflows:
   version: 2
