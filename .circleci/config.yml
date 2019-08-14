@@ -21,18 +21,17 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - attach_workspace:
-          at: .
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .    
-      - checkout
+          at: .    
       - run:
           name: Assemple Step
           command: gradle jar
       - store_artifacts:
           path: build/libs
-          destination: prefix 
+          destination: build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build/libs     
 
    dockerize:
     machine: true
@@ -48,5 +47,9 @@ workflows:
   two_job_flow:
     jobs:
       - test
-      - build
-      - dockerize
+      - build:
+          requires:
+            - test
+      - dockerize:
+          requires:
+            - build
