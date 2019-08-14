@@ -28,8 +28,9 @@ jobs:
         paths:
           - .    
    downstream:
-    - attach_workspace:
-        at: /tmp/workspace
+      steps:
+        - attach_workspace:
+            at: /tmp/workspace
       
 workflows:
   version: 2
