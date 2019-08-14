@@ -23,11 +23,20 @@ jobs:
       - store_artifacts:
           path: build/libs
           destination: prefix
+      - persist_to_workspace:
+        root: test
+        paths:
+        - .    
+   downstream:
+    - attach_workspace:
+      at: /tmp/workspace
+      
 workflows:
   version: 2
   two_job_flow:
     jobs:
       - test
-      - build:
-          requires:
-            - test
+      - build
+      - downstream:
+        requires:
+          - build
