@@ -1,3 +1,4 @@
+version: 2.0
 jobs:
   - test:
     docker:
@@ -5,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: The First Step
+          name: Test Step
           command:
             gradle test
       - store_test_results:
@@ -16,7 +17,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: The Second Step
+          name: Assemple Step
           command:
             gradle jar
       - store_artifacts:
