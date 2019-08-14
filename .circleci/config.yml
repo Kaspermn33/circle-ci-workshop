@@ -22,6 +22,10 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .    
       - checkout
       - run:
           name: Assemple Step
