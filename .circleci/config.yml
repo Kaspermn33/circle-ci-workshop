@@ -38,8 +38,7 @@ jobs:
     machine: true
     steps:
       - attach_workspace:
-          at: .
-      - echo: $DOCKER_USER    
+          at: .    
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t $DOCKER_USER/circleapp:$CIRCLE_SHA1 .
       - run: docker push $DOCKER_USER/circleapp:$CIRCLE_SHA1         
