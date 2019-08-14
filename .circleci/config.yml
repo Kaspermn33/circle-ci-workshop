@@ -26,10 +26,10 @@ jobs:
       - persist_to_workspace:
         root: test
         paths:
-        - .    
+          - .    
    downstream:
     - attach_workspace:
-      at: /tmp/workspace
+        at: /tmp/workspace
       
 workflows:
   version: 2
