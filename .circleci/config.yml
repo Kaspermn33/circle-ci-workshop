@@ -33,13 +33,14 @@ jobs:
       - store_artifacts:
           path: build/libs
           destination: prefix 
+
    dockerize:
     machine: true
     steps:
       - attach_workspace:
           at: .
       - run docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run docker build -t $DOCKER_USER/circleapp:$circle_SHA1 .
+      - run docker build -t $DOCKER_USER/circleapp:$CIRCLE_SHA1 .
       - run docker push $DOCKER_USER/circleapp:$CIRCLE_SHA1         
       
 workflows:
@@ -48,6 +49,4 @@ workflows:
     jobs:
       - test
       - build
-     # - dockerize:
-      #  requires:
-       #   - build
+      - dockerize
