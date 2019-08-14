@@ -9,9 +9,9 @@ jobs:
           name: The First Step
           command:
             gradle test
-	    gradle jar
+            gradle jar
       - store_test_results:
           path: build/test-results
       - store_artifacts:
-	  path: /code/artifact
-	  destination: prefix
+          path: /code/artifact
+          destination: prefix
